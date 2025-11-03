@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BaseClassforSRC {
 	public WebDriver driver;
 	public WebDriverWait wait;
+	public int a;
 	public BaseClassforSRC(WebDriver driver) {
 		this.driver=driver;
 		PageFactory.initElements(driver,this);
