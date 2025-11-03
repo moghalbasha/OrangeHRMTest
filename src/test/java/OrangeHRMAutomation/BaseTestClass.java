@@ -32,8 +32,8 @@ public class BaseTestClass {
 		driver = new FirefoxDriver();
 		driver.manage().window().maximize();
 		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-		String FilePath = System.getProperty("user.dir") + File.separator + "target" + File.separator
-				+ "data.properties";
+		String FilePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "test"
+				+ File.separator + "resources" + File.separator + "data.properties";
 		FileInputStream fileio = new FileInputStream(FilePath);
 		prop = new Properties();
 		prop.load(fileio);
@@ -46,22 +46,22 @@ public class BaseTestClass {
 	@AfterMethod()
 	public void TakeScreenshotandTearDown(ITestResult result) {
 		if (result.getStatus() == 2) {
-			
+
 			try {
 				TakesScreenshot ts = (TakesScreenshot) driver;
 				File srcFile = ts.getScreenshotAs(OutputType.FILE);
 				String TimeStamp = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss").format(new Date());
-				String FileName = result.getName() + TimeStamp+".png";
-				String FolderLocation = System.getProperty("user.dir") + File.separator + "src" + File.separator + "test"
-						+ File.separator + "Screenshot"+File.separator+FileName;
-				FileUtils.copyFile(srcFile, new File(FolderLocation));	
-				
-			}catch(Exception e) {
+				String FileName = result.getName() + TimeStamp + ".png";
+				String FolderLocation = System.getProperty("user.dir") + File.separator + "src" + File.separator
+						+ "test" + File.separator + "Screenshot" + File.separator + FileName;
+				FileUtils.copyFile(srcFile, new File(FolderLocation));
+
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		driver.quit();
-		
+
 	}
 
 }
