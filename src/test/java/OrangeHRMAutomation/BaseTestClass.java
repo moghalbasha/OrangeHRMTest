@@ -45,7 +45,8 @@ public class BaseTestClass {
 
 	@AfterMethod()
 	public void TakeScreenshotandTearDown(ITestResult result) {
-		if (result.getStatus() == 2) {
+		if (result.getStatus() == ITestResult.FAILURE) // or we can mention 2 which is for failure test and 1 for passed
+		{
 
 			try {
 				TakesScreenshot ts = (TakesScreenshot) driver;
@@ -58,9 +59,17 @@ public class BaseTestClass {
 
 			} catch (Exception e) {
 				e.printStackTrace();
+			} finally {
+				if (driver != null) {
+					try {
+						driver.quit();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+
+				}
 			}
 		}
-		driver.quit();
 
 	}
 
