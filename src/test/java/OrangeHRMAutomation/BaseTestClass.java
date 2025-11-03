@@ -20,7 +20,7 @@ import org.testng.annotations.BeforeMethod;
 import com.google.common.io.Files;
 
 public class BaseTestClass {
-
+	int a;
 	public WebDriver driver;
 	public Properties prop;
 	public LoginPage lg;
